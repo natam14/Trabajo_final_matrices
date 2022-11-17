@@ -27,7 +27,6 @@ export class SeeMatrizComponent implements OnInit {
   matrizI:number = 0;
   matrizJ:number = 0;
 
-  //Matriz Reflexiva e Irreflexiva
   reflexiva:boolean[] = [];
   countReflexiva:number = 0;
   
@@ -114,41 +113,20 @@ export class SeeMatrizComponent implements OnInit {
 
   generateRelations() {
     this.relationGeneralR();
-    //this.relationIrreflexivaReflexiva();
+
   }
 
   relationGeneralR() {
-    // let k = 0;
-    // for (let i = 0; i < this.nRows; i++) {
-    //   for (let j = k; j < this.nColumns; j++) {
-    //     console.log(`(${this.matriz[i][j]},${this.matriz[i][k]}) , (${i},${j}) - (${i},${k})`);
-    //   }
-    //   k++;
-    // }
+  
     for (let i = 0; i < this.nRows; i++) {
       for (let j = 0; j < this.nColumns; j++) {
         this.matriz[i][j] === true ? this.relationsGeneral.push(`( ${j + 1} , ${i + 1} )`) : "";
-        // console.log(this.matriz[j][i] + ` = (${j + 1},${i + 1})`);
+
       }
     }
-    // this.relationIrreflexivaReflexiva();
+
   }
   
-  // relationIrreflexivaReflexiva(){
-  //   this.reflexiva = [];
-  //   this.countReflexiva = 0;
-  //   for (let i = 0; i < this.nRows; i++) {
-  //     for (let j = 0; j < this.nColumns; j++) {
-  //       //Reflexiva
-  //       if (i == j && this.matriz[i][j] === true) {
-  //         this.reflexiva.push(true);
-  //       }
-  //       if (i == j) {
-  //         this.countReflexiva++;
-  //       }
-  //     }
-  //   }
-  // }
 
   changeInput(i:number,j:number){
     this.matrizJ = j;

@@ -9,24 +9,17 @@ import { ModalDialogsService } from '../modal-dialog.service';
 export class MatrizTabularComponent implements OnInit {
 
   @Input() matriz: boolean[][] = [];
-  // @Input() conditionOne: number = 0;
-  // @Input() conditionTwo: number = 0;
+
   public diagram: go.Diagram | undefined;
 
   relationsGeneral: string[] = [];
-  // declareGraphs: DeclareGraphs | undefined;
-  // conectGraphs: ConectGraphs | undefined;
-  // arrayDeclareGraphs: DeclareGraphs[] = [];
-  // arrayConectGraphs: ConectGraphs[] = [];
 
   viewRelations: string = "viewHome";
-  // relationReflectiva: boolean = false;
 
-  //Matriz Reflexiva e Irreflexiva
   reflexiva: boolean[] = [];
   countReflexiva: number = 0;
 
-  //Matriz Reflexiva e Irreflexiva
+
   irreflexiva: boolean[] = [];
   countIrreflexiva: number = 0;
 
@@ -39,24 +32,7 @@ export class MatrizTabularComponent implements OnInit {
     this.viewRelations = name;
   }
 
-  // dialogRef: any;
 
-  // relations(){
-  //   this.reflexiva = [];
-  //   for (let i = 0; i < this.n; i++) {
-  //     for (let j = 0; j < this.n; j++) {
-  //       //Reflexiva
-  //       if(i == j && this.matriz[i][j] === true){
-  //         this.reflexiva.push(true);
-  //         console.log(this.reflexiva.length + " -");
-  //       }
-  //       if(i == j){
-  //         this.countReflexiva++;
-  //         console.log(this.countReflexiva);
-  //       }
-  //     }
-  //   }
-  // }
 
   relationReflexiva() {
     this.reflexiva = [];
@@ -78,7 +54,6 @@ export class MatrizTabularComponent implements OnInit {
     this.countIrreflexiva = 0;
     for (let i = 0; i < this.matriz.length; i++) {
       for (let j = 0; j < this.matriz.length; j++) {
-        //Reflexiva true - Irreflexiva false
         if (i == j && this.matriz[i][j] === false) {
           this.irreflexiva.push(false);
         }
@@ -138,18 +113,7 @@ export class MatrizTabularComponent implements OnInit {
   }
 
   relationTransitiva() {
-    // let count = 0;
-    // for (let i = 0; i < this.matriz.length; i++) {
-    //   for (let j = 0; j < this.matriz.length; j++) {
-    //     for (let k = 0; k < this.matriz.length; k++) {
-    //       for (let l = 0; l < this.matriz.length; l++) {
-    //         if (this.matriz[i][j] == this.matriz[k][l] && this.matriz[i][j] && this.matriz[i][l]) {
-    //           count++;
-    //         }
-    //       }
-    //     }
-    //   }
-    // }
+ 
     
     return true
   }
@@ -186,39 +150,5 @@ export class MatrizTabularComponent implements OnInit {
       return false;
     }
   }
-  // generateGraph() {
-  //   let declareGraphs;
-  //   let conectGraphs;
-  //   for (let i = 0; i < this.matriz.length; i++) {
-  //     declareGraphs = {
-  //       key: `${i + 1}`,
-  //       color: 'lightblue'
-  //     }
-  //     this.arrayDeclareGraphs.push(declareGraphs);
-  //     for (let j = 0; j < this.matriz.length; j++) {
-  //       if (this.matriz[i][j]) {
-  //         conectGraphs = {
-  //           from: `${i + 1}`,
-  //           to: `${j + 1}`
-  //         }
-  //         this.arrayConectGraphs.push(conectGraphs);
-  //       }
-  //     }
-  //   }
 
-  //   this.diagram = $(go.Diagram, 'myDiagramDiv');
-  //   this.diagram.nodeTemplate =
-  //     $(go.Node, "Auto",
-  //       $(go.Shape, "RoundedRectangle",
-  //         new go.Binding("fill", "color")),
-  //       $(go.TextBlock,
-  //         { margin: 2, font: " 20px cursive", width: 25, height: 25, textAlign: "center" },
-  //         new go.Binding("text", "key"))
-  //     );
-
-  //   this.diagram.model = new go.GraphLinksModel(
-  //     this.arrayDeclareGraphs,
-  //     this.arrayConectGraphs
-  //   );
-  // }
 }
