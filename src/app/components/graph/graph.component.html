@@ -1,0 +1,6 @@
+<div class="pt-3">
+    <p class="text-red" *ngIf="matriz.length == 0"> No se ha realizado ninguna matriz</p>
+</div>
+<button [disabled]="matriz.length == 0" mat-raised-button  (click)="generateGraph()"
+    class="my-3">Realizar </button>
+<div id="myDiagramDiv" *ngIf="matriz.length != 0"></div>

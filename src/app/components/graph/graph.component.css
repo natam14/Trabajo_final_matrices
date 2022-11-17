@@ -1,0 +1,14 @@
+#myDiagramDiv{
+    width: 500px;
+    height: 300px;
+    border: 1px solid rgb(122, 191, 231);
+    background-color: rgb(122, 191, 231);
+    margin:0 auto;
+    border-radius: .5rem;
+}
+button{
+    display: block;
+    margin:0 auto;
+    width: 500px;
+    background: rgb(230, 97, 230);;
+}

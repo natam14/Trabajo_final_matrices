@@ -1,0 +1,53 @@
+/* You can add global styles to this file, and also import other style files */
+html, body {
+    height: 100%;
+}
+body {
+    margin: 0;
+}
+.text-red {
+    color: rgb(255, 255, 255);
+    background-color: rgb(145, 145, 145);
+    padding: 1rem;
+    text-align: center;
+    border-radius: .2rem;
+    margin-top: 1rem;
+}
+
+.yes-relation {
+    background-color: rgb(45, 43, 161);
+    font-size: 1rem;
+    padding: .4rem;
+    color: #fff;
+    border-radius: .3rem;
+}
+
+.no-relation {
+    background-color: rgb(233, 47, 47);
+    font-size: 1rem;
+    padding: .4rem;
+    color: #fff;
+    border-radius: .3rem;
+}
+.relations{
+    font-size: 1.5rem;
+}
+.mat-flat-button.mat-accent, .mat-raised-button.mat-accent, .mat-fab.mat-accent, .mat-mini-fab.mat-accent {
+    background-color: rgb(255, 9, 124);
+}
+.swal2-styled.swal2-confirm {
+    border: 0;
+    border-radius: .25em;
+    background: initial;
+    background-color: #cf7cbb;
+    color: #fff;
+    font-size: 1em;
+}
+.swal2-styled.swal2-deny {
+    border: 0;
+    border-radius: .25em;
+    background: initial;
+    background-color: #929fe7;
+    color: #fff;
+    font-size: 1em;
+}

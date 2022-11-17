@@ -1,0 +1,151 @@
+<div class="container-fluid">
+    <h1 class="text-center mb-5" id="titulo">Trabajo final matrices.</h1>
+    <hr class="hr">
+    <div class="container">
+        <div class="row">
+            <div class="col-3 content-1">
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Filas</mat-label>
+                    <input matInput [(ngModel)]="nRows" placeholder="Filas" value="">
+                </mat-form-field>
+                X
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Columnas</mat-label>
+                    <input matInput [(ngModel)]="nColumns" placeholder="Columnas" value="">
+                </mat-form-field>
+                <p class="display-5">M = ({{ nRows }} x {{ nColumns }}) </p>
+
+                <button mat-raised-button (click)="correctMatriz()" class="button1"
+                    [disabled]="matriz.length !== 0">Iniciar Matriz</button>
+                <button mat-stroked-button color="secondary" (click)="cleanMatriz()" class="button"
+                    [disabled]="matriz.length === 0">Eliminar matriz</button>
+
+            </div>
+            <div class="col-8 offset-1 content-1">
+                <mat-tab-group>
+                    <mat-tab label="Matriz">
+                        <br>
+                        <p class="text-red" *ngIf="matriz.length === 0"> La matriz no se ha realizado</p>
+                        <div class="row accordion">
+                            <div class="py-2" *ngIf="matrizManually">
+                                
+                                <mat-form-field class="form-field-one" appearance="fill">
+                                    <mat-select [(ngModel)]="matriz[matrizI][matrizJ]" [disabled]="!matrizManually">
+                                        <mat-option [value]="false">0</mat-option>
+                                        <mat-option [value]="true">1</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                                <button mat-raised-button class="ml-5"  class="boton2"
+                                    (click)="confirmMatrizManually()">Genera la matriz</button>
+                                <table>
+                                    <tr>
+                                        <td class="columns">( {{ matrizI + 1 }} , {{ matrizJ + 1 }} )</td>
+                                        <td class="columns" *ngFor="let array of matriz; let i=index"> {{
+                                            i+1 }}
+                                        </td>
+                                    </tr>
+                                    <tr class="cont-elements" *ngFor="let array of matriz; let i=index">
+                                        <td class="rows"> {{ i+1 }} </td>
+                                        <td (click)="changeInput(i,j)" class="elements-table" matTooltipPosition="above"
+                                            *ngFor="let item of array; let j=index" matTooltip="({{i+1}},{{j+1}})">
+                                            {{ matriz[i][j] ? 1 : 0}}
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="py-2" *ngIf="!matrizManually">
+                                <table>
+                                    <tr>
+                                        <td class=""></td>
+                                        <td class="columns" *ngFor="let array of matriz; let i=index"> {{
+                                            i+1 }}
+                                        </td>
+                                    </tr>
+                                    <tr class="cont-elements" *ngFor="let array of matriz; let i=index">
+                                        <td class="rows"> {{ i+1 }} </td>
+                                        <td class="elements-table-auto" matTooltipPosition="above"
+                                            *ngFor="let item of array; let j=index" matTooltip="({{i+1}},{{j+1}})">
+                                            {{ matriz[i][j] ? 1 : 0}}
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </mat-tab>
+                    <mat-tab label="Relaciones (R)">
+                        <div class="container">
+                            <div class="row">
+                                <div class="pt-3">
+                                    <p class="text-red" *ngIf="matriz.length == 0"> No se ha generado ninguna relación</p>
+                                </div>
+                                <div class="col-12 pt-3">
+                                    R = [
+                                    <span *ngFor="let item of relationsGeneral; let i=index">
+                                        {{ item }} ;
+                                    </span>
+                                    ]
+                                </div>
+                            </div>
+                        </div>
+                    </mat-tab>
+                    <mat-tab label="Relaciones">
+                        <br>
+                        <div class="col-12">
+                            <app-matriz-tabular [matriz]="matriz">
+                            </app-matriz-tabular>
+                        </div>
+                    </mat-tab>
+                    <mat-tab label="Grafos">
+                        <app-graph [matriz]="matriz"></app-graph>
+                    </mat-tab>
+                </mat-tab-group>
+                <!-- <mat-expansion-panel [expanded]="openMatriz">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title [ngClass]="matrizManually ? 'pt-3' : ''">
+                                Matriz
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        
+                    </mat-expansion-panel> -->
+
+                <!-- <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Relaciones
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+            
+                    </mat-expansion-panel> -->
+
+                <!-- <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Propiedades
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <div class="row">
+                            <p>C = Columnas , F = Filas</p>
+                            <div class="col-6">
+                                <p>Relaciones en 1 (true)</p>
+                                <p>   C | R</p>
+                                <div>
+                                    <span *ngFor="let item of relationsGeneralTrue; let i=index" class="lol" style="white-space:nowrap;" >
+                                        {{ item }} 
+                                    </>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <p>Relaciones en 0 (false)</p>
+                                <p>   C | R</p>
+                                <div *ngFor="let item of relationsGeneralFalse; let i=index" class="elementsRows">
+                                    {{ item }} 
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-red" *ngIf="matriz.length === 0"> No se ha generado la matriz</p>
+                    </mat-expansion-panel> -->
+            </div>
+        </div>
+    </div>
+    <h3 class="integrantes">Elaborado por: Miguel Cortes Espitia, Juan Angel Ahumada y Natalia Morales Arevalo</h3>
+</div>

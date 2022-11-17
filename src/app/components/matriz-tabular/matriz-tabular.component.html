@@ -1,0 +1,417 @@
+<div>
+    <p class="text-red" *ngIf="matriz.length == 0"> No se ha realizado ninguna relación</p>
+</div>
+<div *ngIf="viewRelations != 'viewHome' && matriz.length != 0 " class="py-3">
+    <button (click)="changeRelation('viewHome')" mat-raised-button color="accent">
+        <mat-icon>arrow_back</mat-icon>
+    </button>
+    <hr>
+</div>
+<div class="row" *ngIf="viewRelations == 'viewHome'">
+    <div class="col-sm-6 mb-3">
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title">Relación Reflexiva</h3>
+                <hr>
+                <p class="card-text">Se dice que una relación R definida en A es “reflexiva” si
+                    todos los elementos de A están relacionados consigo
+                    mismo; es decir, si todos los elementos de A forman
+                    parejas ordenadas en R con componentes iguales.</p>
+                <button (click)="changeRelation('viewReflexiva');relationReflexiva()" [disabled]="matriz.length == 0"
+                    mat-raised-button class="boton3">Ver relación</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 mb-3">
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title">Relación Irreflexiva</h3>
+                <hr>
+                <p class="card-text">Una relación R definida en A es “anti-reflexiva” si ninguno de los
+                    elementos de A están relacionados consigo mismo; es decir, si
+                    no hay elementos de A forman parejas ordenadas en R con
+                    componentes iguales.</p>
+                <button (click)="changeRelation('viewIrreflexiva');relationIrreflexiva()"
+                    [disabled]="matriz.length == 0" mat-raised-button class="boton3">Ver relación</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 mb-3">
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title">Relación Simétrica</h3>
+                <hr>
+                <p class="card-text">Una relación R definida en A es “simétrica” cuando todas
+                    las parejas de la relación tienen su recíproco; es decir,
+                    para elementos x, y de A se cumple que si xRy, entonces
+                    yRx.</p>
+                <button (click)="changeRelation('viewSimetrica')" [disabled]="matriz.length == 0" mat-raised-button
+                class="boton3">Ver relación</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 mb-3">
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title">Relación Asimétrica</h3>
+                <hr>
+                <p class="card-text">Una relación R definida en A es "no simétrica" cuando algunas parejas son
+                    simétricas o tienen su recíproco y otras no lo tienen </p>
+                <button (click)="changeRelation('viewAsimetrica')" [disabled]="matriz.length == 0" mat-raised-button
+                class="boton3">Ver relación</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 mb-3">
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title">Relación Antisimetrica</h3>
+                <hr>
+                <p class="card-text">Una relación R definida en A es "antisimétrica" cuando ninguna pareja de la
+                    relación tienen su recíproco.</p>
+                <button (click)="changeRelation('viewAntisimetrica')" [disabled]="matriz.length == 0" mat-raised-button
+                class="boton3">Ver relación</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-6 mb-3">
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title">Relación Transitiva</h3>
+                <hr>
+                <p class="card-text">Una relación R definida en A es “transitiva” siempre que un
+                    elemento esté relacionado con un segundo y este con un
+                    tercero, entonces el primero esté relacionado con el tercero. Es
+                    decir, siempre que x, y, z sean elementos de A, se cumple que si
+                    (x,y) E R y (y,z) E R, entonces (x,z) E R.</p>
+                <button (click)="changeRelation('viewTransitiva')" [disabled]="matriz.length == 0" mat-raised-button
+                class="boton3">Ver relación</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 mb-3">
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title">Relación Equivalencia</h3>
+                <hr>
+                <p class="card-text">Una relación R definida en un conjunto A es de equivalencia si, y sólo si
+                    es reflexiva, simétrica y transitiva.</p>
+                <button (click)="changeRelation('viewEquivalencia')" [disabled]="matriz.length == 0" mat-raised-button
+                class="boton3">Ver relación</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 mb-3">
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title">Relación Orden Estricto</h3>
+                <hr>
+                <p class="card-text">Una relación R definida en un conjunto A es de orden estricto si R Antisimétricas
+                    y transitiva.</p>
+                <button (click)="changeRelation('viewOrdenEstricto')" [disabled]="matriz.length == 0" mat-raised-button
+                class="boton3">Ver relación</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 mb-3">
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title">Relación de Orden Parcial</h3>
+                <hr>
+                <p class="card-text">Una relación R definida en un conjunto A es de orden parcial si R es reflexiva,
+                    antisimétrica y transitiva, pero no hay relación entre algunos elementos de A.</p>
+                <button (click)="changeRelation('viewOrdenParcial')" [disabled]="matriz.length == 0" mat-raised-button
+                class="boton3">Ver relación</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 mb-3">
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title">Relación de Orden Total</h3>
+                <hr>
+                <p class="card-text">Una relación R definida en un conjunto A es de orden total si R es
+                    reflexiva, simétrica y transitiva</p>
+                <button (click)="changeRelation('viewOrdenTotal')" [disabled]="matriz.length == 0" mat-raised-button
+                class="boton3">Ver relación</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container" *ngIf="matriz.length != 0">
+
+    <div *ngIf="viewRelations == 'viewReflexiva'">
+        <p class="relations">La Relación Reflexiva
+            <span [ngClass]="reflexiva.length == countReflexiva ? 'yes-relation' : 'no-relation'"> {{
+                reflexiva.length == countReflexiva ? 'SI': 'NO' }} </span> se cumple
+        </p>
+        <button mat-raised-button class="boton3" (click)="modalDialog.openDialog(tabularReflexiva)">Abre el Gráfico
+        </button>
+        <ng-template #tabularReflexiva>
+            <mat-dialog-content>
+                <table>
+                    <tr>
+                        <td class="columns"></td>
+                        <td class="columns" *ngFor="let array of matriz; let i=index"> {{ i+1 }} </td>
+                    </tr>
+                    <tr *ngFor="let array of matriz; let i=index">
+                        <td class="rows"> {{ i+1 }} </td>
+                        <td class="elements-table-auto" matTooltipPosition="above"
+                            *ngFor="let item of array; let j=index" [ngClass]="i == j && item==true ? 'selected':''"
+                            matTooltip="({{i+1}},{{j+1}})">
+                            {{ matriz[i][j] ? 1 : 0}}
+                        </td>
+                    </tr>
+                </table>
+            </mat-dialog-content>
+        </ng-template>
+    </div>
+
+    <div *ngIf="viewRelations == 'viewIrreflexiva'">
+        <p class="relations">La Relación Irreflexiva
+            <span [ngClass]="irreflexiva.length == countIrreflexiva ? 'yes-relation' : 'no-relation'"> {{
+                irreflexiva.length == countIrreflexiva ? 'SI': 'NOO' }} </span> se cumple
+        </p>
+        <button mat-raised-button class="boton3" (click)="modalDialog.openDialog(tabularIrreflexiva)">Abre el Gráfico
+        </button>
+        <ng-template #tabularIrreflexiva>
+            <mat-dialog-content>
+                <table>
+                    <tr>
+                        <td class="columns"></td>
+                        <td class="columns" *ngFor="let array of matriz; let i=index"> {{ i+1 }} </td>
+                    </tr>
+                    <tr *ngFor="let array of matriz; let i=index">
+                        <td class="rows"> {{ i+1 }} </td>
+                        <td class="elements-table-auto" matTooltipPosition="above"
+                            *ngFor="let item of array; let j=index" [ngClass]="i == j && item==false ? 'selected':''"
+                            matTooltip="({{i+1}},{{j+1}})">
+                            {{ matriz[i][j] ? 1 : 0}}
+                        </td>
+                    </tr>
+                </table>
+            </mat-dialog-content>
+        </ng-template>
+    </div>
+
+    <div *ngIf="viewRelations == 'viewSimetrica'">
+        <p class="relations">La Relación Simétrica
+            <span [ngClass]="relationSimetrica() ? 'yes-relation' : 'no-relation'"> {{
+                relationSimetrica() ? 'SI': 'NO' }} </span> se cumple
+        </p>
+
+        <button mat-raised-button class="boton3" (click)="modalDialog.openDialog(tabularSimetrica)">Abre el Gráfico
+        </button>
+        <ng-template #tabularSimetrica>
+            <mat-dialog-content>
+                <table>
+                    <tr>
+                        <td class="columns"></td>
+                        <td class="columns" *ngFor="let array of matriz; let i=index"> {{ i+1 }} </td>
+                    </tr>
+                    <tr *ngFor="let array of matriz; let i=index">
+                        <td class="rows"> {{ i+1 }} </td>
+                        <td [style]="this.matriz[i][j] === this.matriz[j][i] ? 'background-color: yellow;':'background-color: red;'"
+                            class="elements-table-auto" matTooltipPosition="above"
+                            *ngFor="let item of array; let j=index" matTooltip="({{i+1}},{{j+1}})">
+                            {{ matriz[i][j] ? 1 : 0}}
+                        </td>
+                    </tr>
+                </table>
+            </mat-dialog-content>
+        </ng-template>
+    </div>
+
+    <div *ngIf="viewRelations == 'viewAsimetrica'">
+        <p class="relations">La Relación Asimétrica
+            <span [ngClass]="relationAsimetrica() ? 'yes-relation' : 'no-relation'"> {{
+                relationAsimetrica() ? 'SI': 'NO' }} </span> se cumple
+        </p>
+        <!-- <button mat-raised-button color="primary" (click)="modalDialog.openDialog(tabularAsimetrica)">Abrir Gráfico
+            <mat-icon inline>open_in_new</mat-icon>
+        </button>
+        <ng-template #tabularAsimetrica>
+            <mat-dialog-content>
+                <table>
+                    <tr>
+                        <td class="columns"></td>
+                        <td class="columns" *ngFor="let array of matriz; let i=index"> {{ i+1 }} </td>
+                    </tr>
+                    <tr *ngFor="let array of matriz; let i=index">
+                        <td class="rows"> {{ i+1 }} </td>
+                        <td [style]="this.matriz[i][j] === this.matriz[j][i] ? 'background-color: yellow;':'background-color: red;'"
+                            class="elements-table-auto" matTooltipPosition="above"
+                            *ngFor="let item of array; let j=index" matTooltip="({{i+1}},{{j+1}})">
+                            {{ matriz[i][j] ? 1 : 0}}
+                        </td>
+                    </tr>
+                </table>
+            </mat-dialog-content>
+        </ng-template>-->
+    </div>
+
+    <div *ngIf="viewRelations == 'viewAntisimetrica'">
+        <p class="relations">La Relación Antisimétrica
+            <span [ngClass]="relationAntisimetrica() ? 'yes-relation' : 'no-relation'"> {{
+                relationAntisimetrica() ? 'SI': 'NO' }} </span> se cumple
+        </p>
+        <!-- <button mat-raised-button color="primary" (click)="modalDialog.openDialog(tabularAntisimetrica)">Abrir Gráfico
+            <mat-icon inline>open_in_new</mat-icon>
+        </button> 
+        <ng-template #tabularAntisimetrica>
+            <mat-dialog-content>
+                <table>
+                    <tr>
+                        <td class="columns"></td>
+                        <td class="columns" *ngFor="let array of matriz; let i=index"> {{ i+1 }} </td>
+                    </tr>
+                    <tr *ngFor="let array of matriz; let i=index">
+                        <td class="rows"> {{ i+1 }} </td>
+                        <td class="elements-table-auto" matTooltipPosition="above"
+                            *ngFor="let item of array; let j=index" matTooltip="({{i+1}},{{j+1}})">
+                            {{ matriz[i][j] ? 1 : 0}}
+                        </td>
+                    </tr>
+                </table>
+            </mat-dialog-content>
+        </ng-template>-->
+    </div>
+
+    <div *ngIf="viewRelations == 'viewTransitiva'">
+        <p class="relations">La Relación Transitiva
+            <span [ngClass]="relationTransitiva() ? 'yes-relation' : 'no-relation'"> {{
+                relationTransitiva() ? 'SI': 'NO' }} </span> se cumple
+        </p>
+        <!-- <button mat-raised-button color="primary" (click)="modalDialog.openDialog(tabularTransitiva)">Abrir Gráfico
+            <mat-icon inline>open_in_new</mat-icon>
+        </button> 
+        <ng-template #tabularTransitiva>
+            <mat-dialog-content>
+                <table>
+                    <tr>
+                        <td class="columns"></td>
+                        <td class="columns" *ngFor="let array of matriz; let i=index"> {{ i+1 }} </td>
+                    </tr>
+                    <tr *ngFor="let array of matriz; let i=index">
+                        <td class="rows"> {{ i+1 }} </td>
+                        <td class="elements-table-auto" matTooltipPosition="above"
+                            *ngFor="let item of array; let j=index" matTooltip="({{i+1}},{{j+1}})">
+                            {{ matriz[i][j] ? 1 : 0}}
+                        </td>
+                    </tr>
+                </table>
+            </mat-dialog-content>
+        </ng-template>-->
+    </div>
+
+    <div *ngIf="viewRelations == 'viewEquivalencia'">
+        <p class="relations">La Relación Equivalencia
+            <span [ngClass]="relationEquivalencia() ? 'yes-relation' : 'no-relation'"> {{
+                relationEquivalencia() ? 'SI': 'NO' }} </span> se cumple
+        </p>
+        <!-- <button mat-raised-button color="primary" (click)="modalDialog.openDialog(tabularEquivalencia)">Abrir Gráfico
+            <mat-icon inline>open_in_new</mat-icon>
+        </button>
+        <ng-template #tabularEquivalencia>
+            <mat-dialog-content>
+                <table>
+                    <tr>
+                        <td class="columns"></td>
+                        <td class="columns" *ngFor="let array of matriz; let i=index"> {{ i+1 }} </td>
+                    </tr>
+                    <tr *ngFor="let array of matriz; let i=index">
+                        <td class="rows"> {{ i+1 }} </td>
+                        <td class="elements-table-auto" matTooltipPosition="above"
+                            *ngFor="let item of array; let j=index" matTooltip="({{i+1}},{{j+1}})">
+                            {{ matriz[i][j] ? 1 : 0}}
+                        </td>
+                    </tr>
+                </table>
+            </mat-dialog-content>
+        </ng-template> -->
+    </div>
+
+    <div *ngIf="viewRelations == 'viewOrdenEstricto'">
+        <p class="relations">La Relación Orden Estricto
+            <span [ngClass]="relationOrdenEstricto() ? 'yes-relation' : 'no-relation'"> {{
+                relationOrdenEstricto() ? 'SI': 'NO' }} </span> se cumple
+        </p>
+        <!-- <button mat-raised-button color="primary" (click)="modalDialog.openDialog(tabularOrdenEstricto)">Abrir Gráfico
+            <mat-icon inline>open_in_new</mat-icon>
+        </button>
+        <ng-template #tabularOrdenEstricto>
+            <mat-dialog-content>
+                <table>
+                    <tr>
+                        <td class="columns"></td>
+                        <td class="columns" *ngFor="let array of matriz; let i=index"> {{ i+1 }} </td>
+                    </tr>
+                    <tr *ngFor="let array of matriz; let i=index">
+                        <td class="rows"> {{ i+1 }} </td>
+                        <td class="elements-table-auto" matTooltipPosition="above"
+                            *ngFor="let item of array; let j=index" matTooltip="({{i+1}},{{j+1}})">
+                            {{ matriz[i][j] ? 1 : 0}}
+                        </td>
+                    </tr>
+                </table>
+            </mat-dialog-content>
+        </ng-template> -->
+    </div>
+
+    <div *ngIf="viewRelations == 'viewOrdenParcial'">
+        <p class="relations">La Relación Orden Parcial
+            <span [ngClass]="relationOrdenParcial() ? 'yes-relation' : 'no-relation'"> {{
+                relationOrdenParcial() ? 'SI': 'NO' }} </span> se cumple
+        </p>
+        <!-- <button mat-raised-button color="primary" (click)="modalDialog.openDialog(tabularOrdenParcial)">Abrir Gráfico
+            <mat-icon inline>open_in_new</mat-icon>
+        </button>
+        <ng-template #tabularOrdenParcial>
+            <mat-dialog-content>
+                <table>
+                    <tr>
+                        <td class="columns"></td>
+                        <td class="columns" *ngFor="let array of matriz; let i=index"> {{ i+1 }} </td>
+                    </tr>
+                    <tr *ngFor="let array of matriz; let i=index">
+                        <td class="rows"> {{ i+1 }} </td>
+                        <td class="elements-table-auto" matTooltipPosition="above"
+                            *ngFor="let item of array; let j=index" matTooltip="({{i+1}},{{j+1}})">
+                            {{ matriz[i][j] ? 1 : 0}}
+                        </td>
+                    </tr>
+                </table>
+            </mat-dialog-content>
+        </ng-template> -->
+    </div>
+    
+    <div *ngIf="viewRelations == 'viewOrdenTotal'">
+        <p class="relations">La Relación de Orden Total
+            <span [ngClass]="relationOrdenTotal() ? 'yes-relation' : 'no-relation'"> {{
+                relationOrdenTotal() ? 'SI': 'NO' }} </span> se cumple
+        </p>
+        <!-- <button mat-raised-button color="primary" (click)="modalDialog.openDialog(tabularOrdenTotal)">Abrir Gráfico
+            <mat-icon inline>open_in_new</mat-icon>
+        </button> 
+        <ng-template #tabularOrdenTotal>
+            <mat-dialog-content>
+                <table>
+                    <tr>
+                        <td class="columns"></td>
+                        <td class="columns" *ngFor="let array of matriz; let i=index"> {{ i+1 }} </td>
+                    </tr>
+                    <tr *ngFor="let array of matriz; let i=index">
+                        <td class="rows"> {{ i+1 }} </td>
+                        <td class="elements-table-auto" matTooltipPosition="above"
+                            *ngFor="let item of array; let j=index" matTooltip="({{i+1}},{{j+1}})">
+                            {{ matriz[i][j] ? 1 : 0}}
+                        </td>
+                    </tr>
+                </table>
+            </mat-dialog-content>
+        </ng-template>-->
+    </div>
+
+
+</div>
